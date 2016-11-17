@@ -8,4 +8,4 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Sample Android Wear App**](https://github.com/kevalpatel2106/android-samples/tree/master/WearableApp): This is the sample android app that runs on android wear and demonstrates how to implement always on screen, step counter and responsive layout for square and round screens. 
 
 ##Contribution:
-If you have any smaple app that might be useful to other android developers, you are welocome to contibute by creating new pull request. Before creating the pull request, you must read contribuion guide lines.9((
+If you have any sample app that might be useful to other android developers, you are welcome to contribute by creating [new pull request](https://github.com/kevalpatel2106/android-samples/pulls). Before creating the pull request, you must read [contribuion guide lines](https://github.com/kevalpatel2106/android-samples/blob/master/CONTRIBUTING.md).
