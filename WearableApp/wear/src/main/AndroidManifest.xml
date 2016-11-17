@@ -4,6 +4,8 @@
 
     <uses-feature android:name="android.hardware.type.watch"/>
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="false"/>
+
+        <activity
+            android:name="com.androidsample.wearableapp.TrackActivity"
+            android:label="@string/title_activity_track"
+            android:theme="@android:style/Theme.DeviceDefault.Light"/>
     </application>
 
 </manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="header_icon_size">60dp</dimen>
+    <dimen name="header_text_size">16sp</dimen>
+    <dimen name="step_count_text_size">34sp</dimen>
+    <dimen name="step_info_text_size">14sp</dimen>
+</resources>

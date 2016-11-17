@@ -2,4 +2,8 @@
     <string name="app_name">Wearable App</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_track">TrackActivity</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="tracking_steps">Tracking steps</string>
+    <string name="steps">Steps</string>
 </resources>
