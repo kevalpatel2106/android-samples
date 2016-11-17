@@ -28,8 +28,6 @@ public class WearableReplayActivity extends AppCompatActivity {
 
         Toast.makeText(this, replayString, Toast.LENGTH_LONG).show();
 
-        WearableNotification.cancel(this);
-
         finish();
     }
 }

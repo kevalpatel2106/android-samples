@@ -19,7 +19,23 @@ public class MainActivity extends AppCompatActivity {
                         "You can test this notification on the android wear device and also you " +
                                 "can replay to the notification using voice input. " +
                                 "But if you are using android wear emulator, you have " +
-                                "to type the replay manually.");
+                                "to type the replay manually.", false);
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Assign multiple notifications to see groupings of the notification
+                //on wearable
+                for (int i = 0; i < 4; i++) {
+                    WearableNotification.notify(MainActivity.this,
+                            "This notification(" + i + ") is on your android wear.",
+                            "You can test this notification on the android wear device and also you " +
+                                    "can replay to the notification using voice input. " +
+                                    "But if you are using android wear emulator, you have " +
+                                    "to type the replay manually.", i == 3);
+                }
             }
         });
     }

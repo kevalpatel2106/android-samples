@@ -24,6 +24,8 @@ public class WearableNotification {
      */
     private static final String NOTIFICATION_TAG = "NewMessage";
 
+    private static final String GROUP_NOTIFICATION_KEY = "group_notification";
+
     /**
      * This is the unique identifier for the remote input on the android wear device.
      */
@@ -34,7 +36,8 @@ public class WearableNotification {
      */
     public static void notify(final Context context,
                               final String title,
-                              final String bigText) {
+                              final String bigText,
+                              boolean groupNotification) {
         final Resources res = context.getResources();
 
 
@@ -109,18 +112,63 @@ public class WearableNotification {
                 .addRemoteInput(remoteInput)    //add remote voice input
                 .build();
 
+        //Create pages and display them into the wear device notifications. This pages will never appear on phone.
+        //Page 2
+        Notification secondPagNotification = new NotificationCompat
+                .Builder(context)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .setBigContentTitle("Page 2")
+                        .setBigContentTitle("A lot of text for page 2..."))
+                .build();
+        //Page 3
+        Notification thirdPagNotification = new NotificationCompat
+                .Builder(context)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .setBigContentTitle("Page 3")
+                        .setBigContentTitle("A lot of text for page 3..."))
+                .build();
+
         //Create WearableExtender object
         NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
+                //Add wearable actions
                 .addAction(wearReplay)
+
+                //set all the pages
+                .addPage(secondPagNotification)
+                .addPage(thirdPagNotification)
+
+                //set the custom icon background
                 .setHintHideIcon(true)                  //Do not display phone's notification large icon
-                .setBackground(BitmapFactory.decodeResource(res, R.drawable.example_picture));  //set the custom icon background
+                .setBackground(BitmapFactory.decodeResource(res, R.drawable.example_picture));
 
 
         //Add the wearable extend to the notification
         builder.extend(wearableExtender);
+        builder.setGroup(GROUP_NOTIFICATION_KEY);       //Set the unique key to group notification on wear
 
         //display the notification
         notify(context, builder.build());
+
+        //Create summary notification to display the summary for group of the notification.
+        if (groupNotification) {
+            Notification summaryNotification = new NotificationCompat.Builder(context)
+                    .setContentTitle("4 new messages")
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)                                      //Set the priority.
+                    .setSmallIcon(R.drawable.ic_notification_small)                                     //Small icon to display
+                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.example_picture))
+                    .setStyle(new NotificationCompat.InboxStyle()
+                            .addLine("Title 1")
+                            .addLine("Title 2")
+                            .addLine("Title 3")
+                            .addLine("Title 4")
+                            .setSummaryText("Total 4 messages"))
+                    .setGroup(GROUP_NOTIFICATION_KEY)
+                    .setGroupSummary(true)  //This indicates, this is not the normal notification. This is summary notification
+                    .build();
+
+            //display the notification
+            notify(context, summaryNotification);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.ECLAIR)
@@ -128,24 +176,9 @@ public class WearableNotification {
         final NotificationManager nm = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-            nm.notify(NOTIFICATION_TAG, 0, notification);
+            nm.notify(NOTIFICATION_TAG, (int) System.currentTimeMillis(), notification);
         } else {
             nm.notify(NOTIFICATION_TAG.hashCode(), notification);
-        }
-    }
-
-    /**
-     * Cancels any notifications of this type previously shown using
-     * {@link #notify(Context, String, String)}.
-     */
-    @TargetApi(Build.VERSION_CODES.ECLAIR)
-    public static void cancel(final Context context) {
-        final NotificationManager nm = (NotificationManager) context
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-            nm.cancel(NOTIFICATION_TAG, 0);
-        } else {
-            nm.cancel(NOTIFICATION_TAG.hashCode());
         }
     }
 }
