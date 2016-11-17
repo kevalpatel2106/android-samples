@@ -1,10 +1,11 @@
-package sample.kevalpatel2106.com.myapplication;
+package com.androidsample.wearablenotification;
 
 import android.support.v4.app.RemoteInput;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.widget.Toast;
+
+import com.androidsample.wearablenotification.myapplication.R;
 
 /**
  * This is the activity that will open while user replies from the android wear device via remote input.

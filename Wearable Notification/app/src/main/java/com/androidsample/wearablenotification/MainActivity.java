@@ -1,8 +1,10 @@
-package sample.kevalpatel2106.com.myapplication;
+package com.androidsample.wearablenotification;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.androidsample.wearablenotification.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

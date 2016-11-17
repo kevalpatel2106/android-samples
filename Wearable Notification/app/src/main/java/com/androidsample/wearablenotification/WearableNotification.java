@@ -1,4 +1,4 @@
-package sample.kevalpatel2106.com.myapplication;
+package com.androidsample.wearablenotification;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.RemoteInput;
+
+import com.androidsample.wearablenotification.myapplication.R;
 
 /**
  * Helper class for showing and canceling new message notifications on both android phone and wear.

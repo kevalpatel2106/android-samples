@@ -1,4 +1,4 @@
-package sample.kevalpatel2106.com.myapplication;
+package com.androidsample.wearablenotification.myapplication;
 
 import org.junit.Test;
 
