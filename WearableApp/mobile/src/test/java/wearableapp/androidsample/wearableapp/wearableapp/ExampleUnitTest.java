@@ -1,4 +1,4 @@
-package wearableapp.androidsample.com.wearableapp;
+package wearableapp.androidsample.wearableapp.wearableapp;
 
 import org.junit.Test;
 

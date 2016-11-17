@@ -3,14 +3,14 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="wearableapp.androidsample.com.wearableapp.MainActivity"
+                tools:context="com.androidsample.wearableapp.MainActivity"
                 tools:deviceIds="wear_round">
 
-    <TextView
+    <Button
         android:id="@+id/text"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_round"/>
+        android:text="Send data"/>
 </RelativeLayout>
