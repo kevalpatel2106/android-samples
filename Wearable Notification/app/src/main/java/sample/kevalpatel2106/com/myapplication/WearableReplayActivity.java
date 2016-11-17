@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.widget.Toast;
 
-public class WearableReplay extends AppCompatActivity {
+/**
+ * This is the activity that will open while user replies from the android wear device via remote input.
+ */
+public class WearableReplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +18,7 @@ public class WearableReplay extends AppCompatActivity {
 
         CharSequence replayString;
 
-        //get the voice replays
+        //get the voice replays from the remote input.
         Bundle bundle = RemoteInput.getResultsFromIntent(getIntent());
         if (bundle != null) {
             replayString = bundle.getCharSequence(WearableNotification.REMOTE_INPUT_LABEL);
