@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Wearable App</string>
+    <string name="tracking_steps">Tracking Running</string>
+    <string name="steps">steps</string>
+    <string name="tracking_stopped">Tracking stopped</string>
+    <string name="tracking_running">Tracking running</string>
 </resources>

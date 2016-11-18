@@ -21,6 +21,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
@@ -39,6 +42,9 @@ public class TrackActivity extends WearableActivity implements
     private ImageView mHeaderIv;
     private TextView mStepCountTv;
 
+    private static final String STEP_COUNT_MESSAGES_PATH = "/StepCount";
+    private static final String STEP_TRACKING_STATUS_PATH = "/TrackingStatus";
+
     private SensorEventListener mSensorEventListener = new SensorEventListener() {
         private float mStepOffset;
 
@@ -51,8 +57,11 @@ public class TrackActivity extends WearableActivity implements
         public void onSensorChanged(SensorEvent event) {
             if (mStepOffset == 0) mStepOffset = event.values[0];
 
-            if (mStepCountTv != null)
-                mStepCountTv.setText(Float.toString(event.values[0] - mStepOffset));
+            if (mStepCountTv != null) {
+                String stepCount = Float.toString(event.values[0] - mStepOffset);
+                mStepCountTv.setText(stepCount);
+                sendStepCountMessage(stepCount);
+            }
         }
     };
 
@@ -93,16 +102,18 @@ public class TrackActivity extends WearableActivity implements
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mSensorManager.registerListener(mSensorEventListener, mStepSensor,
-                SensorManager.SENSOR_DELAY_NORMAL);
+    protected void onPause() {
+        super.onPause();
+        if (mGoogleApiClient.isConnected()) {
+            mSensorManager.unregisterListener(mSensorEventListener);
+            sendTrackingStatusDataMap(false);
+        }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        mSensorManager.unregisterListener(mSensorEventListener);
+    protected void onDestroy() {
+        super.onDestroy();
+        mGoogleApiClient.disconnect();
     }
 
     private void init(WatchViewStub watchViewStub) {
@@ -158,33 +169,45 @@ public class TrackActivity extends WearableActivity implements
      * Send the current step count to the device with the time stamp to the phone. Phone will just display
      * the data on the screen.  We are using DataMap here to ensure the delivery of the messages.
      *
-     * @param steps     number of steps
-     * @param timeStamp current time stamp
+     * @param isTracking true if the tracking is running
      */
-    private void sendStepCount(int steps, long timeStamp) {
-        PutDataMapRequest dataMapRequest = PutDataMapRequest.create("/StepCount");
+    private void sendTrackingStatusDataMap(boolean isTracking) {
+        PutDataMapRequest dataMapRequest = PutDataMapRequest.create(STEP_TRACKING_STATUS_PATH);
 
-        dataMapRequest.getDataMap().putInt("step-count", steps);
-        dataMapRequest.getDataMap().putLong("step-stamp", timeStamp);
+        dataMapRequest.getDataMap().putBoolean("status", isTracking);
+        dataMapRequest.getDataMap().putLong("status-time", System.currentTimeMillis());
 
         PutDataRequest putDataRequest = dataMapRequest.asPutDataRequest();
         Wearable.DataApi.putDataItem(mGoogleApiClient, putDataRequest)
                 .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
                     @Override
                     public void onResult(@NonNull DataApi.DataItemResult dataItemResult) {
-
-                        if (dataItemResult.getStatus().isSuccess()) {
-                            Log.d("Data saving", "Success");
-                        } else {
-                            Log.d("Data saving", "Failed");
-                        }
+                        Log.d("Data saving", dataItemResult.getStatus().isSuccess() ? "Success" : "Failed");
                     }
                 });
 
     }
 
+    private void sendStepCountMessage(final String stepCount) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
+                for (Node node : nodes.getNodes()) {
+                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
+                            mGoogleApiClient, node.getId(), STEP_COUNT_MESSAGES_PATH, stepCount.getBytes()).await();
+
+                    Log.d("Messages Api", result.getStatus().isSuccess() ? "Sent successfully" : "Sent failed.");
+                }
+            }
+        }).start();
+    }
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        mSensorManager.registerListener(mSensorEventListener, mStepSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        sendTrackingStatusDataMap(true);
     }
 
     @Override
