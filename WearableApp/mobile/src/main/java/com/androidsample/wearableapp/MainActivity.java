@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageEvent;
+
 import wearableapp.androidsample.wearableapp.wearableapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView trackingStatusTv;
     private TextView stepCountTv;
 
+    /**
+     * Broadcast receiver to get updates related to step tracking status from the watch using
+     * {@link WearService}.
+     *
+     * @see WearService#onDataChanged(DataEventBuffer)
+     */
     private BroadcastReceiver mTrackingStatusReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -30,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Local bread cast receiver to get the step count updates.
+     *
+     * @see WearService#onMessageReceived(MessageEvent)
+     */
     private BroadcastReceiver mStepCountReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         stepCountTv = (TextView) findViewById(R.id.step_count_tv);
         stepCountTv.setText("0");
 
+        //register receivers
         LocalBroadcastManager.getInstance(this).registerReceiver(mTrackingStatusReceiver,
                 new IntentFilter(WearService.TRACKING_STATUS_ACTION));
 

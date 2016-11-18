@@ -33,6 +33,11 @@ import wearableapp.androidsample.wearableapp.wearableapp.R;
 public class TrackActivity extends WearableActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
+    //Path for the messages and data map objects
+    private static final String STEP_COUNT_MESSAGES_PATH = "/StepCount";
+    private static final String STEP_TRACKING_STATUS_PATH = "/TrackingStatus";
+
+    //Step sensors
     private SensorManager mSensorManager;
     private Sensor mStepSensor;
 
@@ -42,9 +47,9 @@ public class TrackActivity extends WearableActivity implements
     private ImageView mHeaderIv;
     private TextView mStepCountTv;
 
-    private static final String STEP_COUNT_MESSAGES_PATH = "/StepCount";
-    private static final String STEP_TRACKING_STATUS_PATH = "/TrackingStatus";
-
+    /**
+     * Event listener to get updates of step count sensor updates.
+     */
     private SensorEventListener mSensorEventListener = new SensorEventListener() {
         private float mStepOffset;
 
@@ -58,8 +63,13 @@ public class TrackActivity extends WearableActivity implements
             if (mStepOffset == 0) mStepOffset = event.values[0];
 
             if (mStepCountTv != null) {
+                //get the steps count
                 String stepCount = Float.toString(event.values[0] - mStepOffset);
                 mStepCountTv.setText(stepCount);
+
+                //send the message to the phone, to update the display.
+                //this will send data using MessageAPI, as we don't require guarantee for the delivery.
+                //If the phone is not connected to the watch, this message will be lost.
                 sendStepCountMessage(stepCount);
             }
         }
@@ -82,9 +92,8 @@ public class TrackActivity extends WearableActivity implements
             }
         });
 
+        //Connect Google api client to communicate with phone
         connectGoogleApiClient();
-
-        registerStepSensor();
     }
 
     private void connectGoogleApiClient() {
@@ -99,13 +108,19 @@ public class TrackActivity extends WearableActivity implements
     private void registerStepSensor() {
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mStepSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+
+        //send update of the step count tracking sensor status to the phone
+        sendTrackingStatusDataMap(true);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        //stop sensing
         if (mGoogleApiClient.isConnected()) {
             mSensorManager.unregisterListener(mSensorEventListener);
+
+            //send update of the step count tracking sensor status to the phone
             sendTrackingStatusDataMap(false);
         }
     }
@@ -116,6 +131,9 @@ public class TrackActivity extends WearableActivity implements
         mGoogleApiClient.disconnect();
     }
 
+    /**
+     * Initialize the UI.
+     */
     private void init(WatchViewStub watchViewStub) {
         mHeaderIv = (ImageView) watchViewStub.findViewById(R.id.header_icon);
         mHeaderIv.setColorFilter(ContextCompat.getColor(this, R.color.icon_red));
@@ -166,8 +184,11 @@ public class TrackActivity extends WearableActivity implements
     }
 
     /**
-     * Send the current step count to the device with the time stamp to the phone. Phone will just display
-     * the data on the screen.  We are using DataMap here to ensure the delivery of the messages.
+     * Send the current status of the step count tracking weather it is running or not. This message
+     * is important and we should have guarantee of delivery to maintain the state of tracking status
+     * on the phone. That is why we are using DataMap to communicate. So, if the phone is not connected
+     * the message won't get lost. As soon as the phone connects, this status message will pass to the
+     * phone application.
      *
      * @param isTracking true if the tracking is running
      */
@@ -182,12 +203,25 @@ public class TrackActivity extends WearableActivity implements
                 .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
                     @Override
                     public void onResult(@NonNull DataApi.DataItemResult dataItemResult) {
+                        //check if the message is delivered?
+                        //If the status is failed, that means that the currently device is
+                        //not connected. The data will get deliver when phone gets connected to the watch.
                         Log.d("Data saving", dataItemResult.getStatus().isSuccess() ? "Success" : "Failed");
                     }
                 });
 
     }
 
+    /**
+     * Send the current step count to the phone. This does not require guarantee of message delivery. As, if
+     * the message is not delivered, the count will get updated when second message gets delivered.
+     * So, we are using messages api for passing the data that are usful at the current moment only.
+     * <p>
+     * <B>Note: </B> Messages will block the UI thread while sending. So, we should send messages in background
+     * thread only.
+     *
+     * @param stepCount current step count.
+     */
     private void sendStepCountMessage(final String stepCount) {
         new Thread(new Runnable() {
             @Override
@@ -197,6 +231,7 @@ public class TrackActivity extends WearableActivity implements
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
                             mGoogleApiClient, node.getId(), STEP_COUNT_MESSAGES_PATH, stepCount.getBytes()).await();
 
+                    //check  if the message is delivered?
                     Log.d("Messages Api", result.getStatus().isSuccess() ? "Sent successfully" : "Sent failed.");
                 }
             }
@@ -205,9 +240,8 @@ public class TrackActivity extends WearableActivity implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        mSensorManager.registerListener(mSensorEventListener, mStepSensor,
-                SensorManager.SENSOR_DELAY_NORMAL);
-        sendTrackingStatusDataMap(true);
+        //register the step sensors
+        registerStepSensor();
     }
 
     @Override
