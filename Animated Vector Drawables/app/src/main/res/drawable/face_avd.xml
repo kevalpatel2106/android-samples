@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_face_smiley">
+
+    <!--Animate mouth-->
+    <target
+        android:name="mouth"
+        android:animation="@animator/face_animator" />
+
+    <!--change color shift-->
+    <target
+        android:animation="@animator/color_animator"
+        android:name="wholeColor"/>
+
+    <!--open right eye-->
+    <target
+        android:animation="@animator/right_eye_animator"
+        android:name="righteye"/>
+
+    <!--open left eye-->
+    <target
+        android:animation="@animator/left_eye_animator"
+        android:name="lefteye"/>
+</animated-vector>
