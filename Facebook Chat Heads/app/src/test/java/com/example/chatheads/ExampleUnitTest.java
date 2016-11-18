@@ -1,4 +1,4 @@
-package com.example.hangoutnotification;
+package com.example.chatheads;
 
 import org.junit.Test;
 
