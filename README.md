@@ -1,5 +1,7 @@
 # android-samples
 
+![Heading](https://github.com/kevalpatel2106/android-samples/blob/master/WearableApp/asstes/heading.png)
+
 This repository contains android tutorial projects that contain code of the sample applications that implements any particular feature. This repository is to help the developer to understand the feature and quickly implement the working code for that feature.
 
 ##Here is the list of all the samples:
