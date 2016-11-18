@@ -1,5 +1,9 @@
 package com.androidsample.watchface;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,23 +12,49 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.text.TextPaint;
 import android.view.SurfaceHolder;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Locale;
 
 public class DigitalWatchFace extends CanvasWatchFaceService {
+    private Engine mEngine;
+
+    private BroadcastReceiver mBgColorChangeListener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mEngine != null)
+                mEngine.changeBgColor(intent.getStringExtra(ComService.ARG_NEW_COLOR));
+        }
+    };
 
     /**
      * Create the {@link android.support.wearable.watchface.CanvasWatchFaceService.Engine}
      */
     @Override
     public Engine onCreateEngine() {
-        return new Engine();
+        mEngine = new Engine();
+        return mEngine;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        //Register the receiver to know whenever bg color is changed.
+        LocalBroadcastManager.getInstance(this).registerReceiver(mBgColorChangeListener,
+                new IntentFilter(ComService.ACTION_BG_COLOR_CHANGE));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBgColorChangeListener);
     }
 
     /**
@@ -52,11 +82,10 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
             }
         };
 
+        /**
+         * Invalidate the view and redraw the canvas.
+         */
         private void onSecondTick() {
-            invalidateIfNecessary();
-        }
-
-        private void invalidateIfNecessary() {
             if (isVisible() && !isInAmbientMode()) {
                 invalidate();
             }
@@ -86,10 +115,12 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
 
             mTextPaint.setTypeface(Typeface.createFromAsset(getAssets(), "Montserrat-Bold.ttf"));
 
-            mNormalBgColor = ContextCompat.getColor(DigitalWatchFace.this, android.R.color.holo_green_dark);
+            mNormalBgColor = Color.parseColor(getSharedPreferences("settings", Context.MODE_PRIVATE)
+                    .getString("select_color", "#000000"));
 
+            //set the ticker to tick every second when watch is in interactive mode
             mTimeTick = new Handler(Looper.myLooper());
-            mTimeTick.postDelayed(mTimeRunnable,1000);
+            mTimeTick.postDelayed(mTimeRunnable, 1000);
         }
 
         /**
@@ -105,7 +136,8 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
         }
 
         /**
-         * probably the most important callback, this is called every time the watch face is invalidated. Here we will define the draw logic of the watch face
+         * probably the most important callback, this is called every time the watch face is invalidated.
+         * Here we will define the draw logic of the watch face
          */
         @Override
         public void onDraw(Canvas canvas, Rect bounds) {
@@ -117,13 +149,17 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
             canvas.drawText(getClockTimeText(), bounds.centerX(), bounds.centerY(), mTextPaint);
         }
 
+        /**
+         * This method will return time string in hh:mm:ss a format if the watch is in interactive
+         * mode and in hh:mm a format if the watch is in ambient mode.
+         */
         @SuppressWarnings("WrongConstant")
         private String getClockTimeText() {
-           if (isInAmbientMode()){
-               return mDateFormatWithoutSec.format(System.currentTimeMillis());
-           }else {
-               return mDateFormatWithSec.format(System.currentTimeMillis());
-           }
+            if (isInAmbientMode()) {
+                return mDateFormatWithoutSec.format(System.currentTimeMillis());
+            } else {
+                return mDateFormatWithSec.format(System.currentTimeMillis());
+            }
         }
 
         /**
@@ -136,7 +172,7 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
         @Override
         public void onTimeTick() {
             super.onTimeTick();
-            invalidate();
+            invalidate();   //Redraw the watch face (every minute)
         }
 
         /**
@@ -149,9 +185,16 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
         @Override
         public void onAmbientModeChanged(boolean inAmbientMode) {
             super.onAmbientModeChanged(inAmbientMode);
+
+            //If the watch is entering to interactive mode start the Ticker and if the watch is entering in
+            //ambient mode stop the ticker as we will update watch face in onTimeTick() in ambient mode.
             startTimerIfNecessary();
         }
 
+        public void changeBgColor(String newColor) {
+            mNormalBgColor = Color.parseColor(newColor);
+            invalidate();
+        }
 
         @Override
         public void onDestroy() {

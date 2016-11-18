@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.androidsample.watchface">
 
     <uses-feature android:name="android.hardware.type.watch"/>
@@ -37,6 +38,16 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
+        <service
+            android:name=".ComService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"
+                        tools:ignore="WearableBindListener"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
