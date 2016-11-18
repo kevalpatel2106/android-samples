@@ -5,6 +5,7 @@ This repository contains android tutorial projects that contain code of the samp
 ##Here is the list of all the samples:
 - [**Android Quick Settings Tile**](https://github.com/kevalpatel2106/android-samples/tree/master/Android-N-Quick-Settings): This sample implements Quick Settings Tiles introduced in Android 7.0.
 - [**Android Wear Notifications**](https://github.com/kevalpatel2106/android-samples/tree/master/Wearable%20Notification): This sample demonstrates how you can extend simple notification to perform android wear specific actions.
+- [**Watchface**](https://github.com/kevalpatel2106/android-samples/tree/master/WatchfaceSample): This sample demonstrates how you create smaple watchface and cusomize it.
 - [**Sample Android Wear App**](https://github.com/kevalpatel2106/android-samples/tree/master/WearableApp): This is the sample android app that runs on android wear and demonstrates how to implement always on screen, step counter and responsive layout for square and round screens. 
 
 ##Contribution:
