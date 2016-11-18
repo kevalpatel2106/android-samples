@@ -15,7 +15,7 @@
         android:theme="@android:style/Theme.DeviceDefault">
         <service
             android:name=".DigitalWatchFace"
-            android:label="@string/my_analog_name"
+            android:label="@string/digital_name"
             android:permission="android.permission.BIND_WALLPAPER">
             <meta-data
                 android:name="android.service.wallpaper"
