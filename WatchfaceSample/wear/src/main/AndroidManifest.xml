@@ -21,12 +21,22 @@
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/watch_face"/>
+
+            <!--set the square preview image-->
             <meta-data
                 android:name="com.google.android.wearable.watchface.preview"
-                android:resource="@drawable/preview_analog"/>
+                android:resource="@drawable/preview_rect"/>
+
+            <!--set the circular preview image-->
             <meta-data
                 android:name="com.google.android.wearable.watchface.preview_circular"
-                android:resource="@drawable/preview_analog"/>
+                android:resource="@drawable/preview_rect"/>
+
+            <!--Define WatchFaceConfig activity action. When clicked this will open
+           the WatchFaceConfigActivity on phone.-->
+            <meta-data
+                android:name="com.google.android.wearable.watchface.companionConfigurationAction"
+                android:value="com.androidsample.watchface.CONFIG_DIGITAL"/>
 
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService"/>
@@ -44,8 +54,9 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"
-                        tools:ignore="WearableBindListener"/>
+                <action
+                    android:name="com.google.android.gms.wearable.BIND_LISTENER"
+                    tools:ignore="WearableBindListener"/>
             </intent-filter>
         </service>
     </application>

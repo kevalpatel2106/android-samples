@@ -36,7 +36,7 @@ public class WatchFaceConfigActivity extends AppCompatActivity implements Google
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_watchface_cofig);
 
         connectGoogleApiClient();
 
@@ -51,6 +51,9 @@ public class WatchFaceConfigActivity extends AppCompatActivity implements Google
         if (mGoogleApiClient.isConnected()) mGoogleApiClient.disconnect();
     }
 
+    /**
+     * Connect google api client.
+     */
     private void connectGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
@@ -75,10 +78,12 @@ public class WatchFaceConfigActivity extends AppCompatActivity implements Google
 
     }
 
+    //Adapter to display all the supported background colors
     private class ColorListAdapter extends RecyclerView.Adapter<ColorListAdapter.MyViewHolder> {
         private String mSelectedColor;
 
-        public ColorListAdapter() {
+        ColorListAdapter() {
+            //Load the selected color from the preference. Default color is black.
             mSelectedColor = getSharedPreferences("settings", Context.MODE_PRIVATE).getString("select_color", "#000000");
         }
 
@@ -104,13 +109,16 @@ public class WatchFaceConfigActivity extends AppCompatActivity implements Google
                 public void onClick(View view) {
                     mSelectedColor = mSupportedBg[position];
 
+                    //Save new color to the shared prefs
                     getSharedPreferences("settings", Context.MODE_PRIVATE)
                             .edit()
                             .putString("select_color", mSupportedBg[position])
                             .apply();
 
+                    //Send DataMap to the wear.
                     notifyWear(mSupportedBg[position]);
 
+                    //Update the list
                     notifyDataSetChanged();
                 }
             });

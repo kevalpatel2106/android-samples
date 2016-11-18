@@ -24,9 +24,13 @@ import java.util.Locale;
 public class DigitalWatchFace extends CanvasWatchFaceService {
     private Engine mEngine;
 
+    /**
+     * This receiver will receive the broadcast, whenever the background color is changed.
+     */
     private BroadcastReceiver mBgColorChangeListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //Notify watch face engine
             if (mEngine != null)
                 mEngine.changeBgColor(intent.getStringExtra(ComService.ARG_NEW_COLOR));
         }
@@ -107,14 +111,14 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
             mDateFormatWithoutSec = new SimpleDateFormat("hh:mm a", Locale.getDefault());
             mDateFormatWithSec = new SimpleDateFormat("hh:mm:ss a", Locale.getDefault());
 
-
+            //Clock text paint
             mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
             mTextPaint.setColor(ContextCompat.getColor(DigitalWatchFace.this, android.R.color.white));
             mTextPaint.setTextSize(getResources().getDimension(R.dimen.clock_text_size));
             mTextPaint.setTextAlign(Paint.Align.CENTER);
-
             mTextPaint.setTypeface(Typeface.createFromAsset(getAssets(), "Montserrat-Bold.ttf"));
 
+            //Load the selected color from the preference file
             mNormalBgColor = Color.parseColor(getSharedPreferences("settings", Context.MODE_PRIVATE)
                     .getString("select_color", "#000000"));
 
@@ -191,7 +195,12 @@ public class DigitalWatchFace extends CanvasWatchFaceService {
             startTimerIfNecessary();
         }
 
-        public void changeBgColor(String newColor) {
+        /**
+         * Change the background color.
+         *
+         * @param newColor new color code (e.g. #FF0000)
+         */
+        void changeBgColor(String newColor) {
             mNormalBgColor = Color.parseColor(newColor);
             invalidate();
         }
