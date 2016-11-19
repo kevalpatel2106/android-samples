@@ -11,4 +11,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.chatheads.ChatActivity">
 
+    <TextView android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:textSize="18sp"
+              android:text="You can display the current user conversation to this screen and also allow user to send a new message."/>
+
 </RelativeLayout>

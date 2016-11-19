@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <!--Profile image for the chat head.-->
     <ImageView
         android:id="@+id/chat_head_profile_iv"
         android:layout_width="60dp"
@@ -15,6 +16,7 @@
         android:src="@drawable/ic_android_circle"
         tools:ignore="ContentDescription"/>
 
+    <!--Close button-->
     <ImageView
         android:id="@+id/close_btn"
         android:layout_width="26dp"

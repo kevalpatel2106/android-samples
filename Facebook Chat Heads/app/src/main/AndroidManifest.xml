@@ -19,13 +19,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ChatActivity"
+            android:label="Chat with Android">
+
+        </activity>
         <service
             android:name=".ChatHeadService"
             android:enabled="true"
             android:exported="false"/>
-
-        <activity android:name=".ChatActivity">
-        </activity>
     </application>
 
 </manifest>
