@@ -15,4 +15,4 @@ This repository contains android tutorial projects that contain code of the samp
 ##Contribution:
 If you have any sample app that might be useful to other android developers, you are welcome to contribute by creating [new pull request](https://github.com/kevalpatel2106/android-samples/pulls). Before creating the pull request, you must read [contribuion guide lines](https://github.com/kevalpatel2106/android-samples/blob/master/CONTRIBUTING.md).
 
-###If you have any queries message me on [@Kevalonly77](https://twitter.com/Kevalonly77). Follow me on Twitter at [@Kevalonly77](https://twitter.com/Kevalonly77) to get more updates. 
+###If you have any queries ask me on [@Kevalonly77](https://twitter.com/Kevalonly77). Follow me on Twitter at [@Kevalonly77](https://twitter.com/Kevalonly77) to get more updates. 
