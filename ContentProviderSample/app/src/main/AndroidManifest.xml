@@ -19,7 +19,7 @@
 
         <provider
             android:name=".data.NameProvider"
-            android:authorities="@string/package_name"
+            android:authorities="com.androidsample.contentprovidersample"
             android:exported="true"
             android:multiprocess="true"
             tools:ignore="ExportedContentProvider"/>
