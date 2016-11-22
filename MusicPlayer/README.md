@@ -8,3 +8,5 @@ This sample demonstrates, how you can build the simple music player application 
 - Play music in background using foreground service.
 - Select audio file from the file system.
 - Display current progress using seek bar in music player.
+
+_Learn more about `MediaPlayer` from [here](https://developer.android.com/reference/android/media/MediaPlayer.html)._
