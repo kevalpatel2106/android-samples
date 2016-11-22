@@ -50,8 +50,8 @@ public class NameProvider extends ContentProvider {
                 return db.query(NameContract.NAMES_TABLE, projs, NameContract.NamesEntry.ID + " =?",
                         new String[]{uri.getLastPathSegment()}, null, null, null);
             case URI_WITH_QUERY:
-                return db.query(NameContract.NAMES_TABLE, projs, NameContract.NamesEntry.NAME + " LIKE ?%",
-                        new String[]{uri.getLastPathSegment()}, null, null, null);
+                return db.query(NameContract.NAMES_TABLE, projs, NameContract.NamesEntry.NAME + " LIKE '" + uri.getLastPathSegment() + "%'",
+                        null, null, null, null);
         }
         return null;
     }

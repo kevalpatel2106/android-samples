@@ -3,6 +3,7 @@ package com.androidsample.contentprovidersample;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 contentValues.put("name", editText.getText().toString());
                 contentResolver.insert(Uri.parse("content://com.androidsample.contentprovidersample/names/"), contentValues);
 
+                Cursor cursor = contentResolver.query(Uri.parse("content://com.androidsample.contentprovidersample/names/"),
+                        new String[]{"name", "_id"},
+                        null, null, "name ASC");
+                mAdapter.swapCursor(cursor);
+
                 editText.setText("");
-                mAdapter = new SimpleCursorAdapter(MainActivity.this,
-                        android.R.layout.simple_expandable_list_item_1,
-                        contentResolver.query(Uri.parse("content://com.androidsample.contentprovidersample/names/"), new String[]{"name", "_id"}, null, null, "name ASC"),
-                        new String[]{"name"},
-                        new int[]{android.R.id.text1});
-                listView.setAdapter(mAdapter);
             }
         });
 
