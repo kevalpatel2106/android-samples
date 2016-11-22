@@ -10,3 +10,7 @@ This sample demonstrates, how you can build the simple music player application 
 - Display current progress using seek bar in music player.
 
 _Learn more about `MediaPlayer` from [here](https://developer.android.com/reference/android/media/MediaPlayer.html)._
+
+####Screenshot:
+
+![Sample](https://github.com/kevalpatel2106/android-samples/blob/master/MusicPlayer/asstes/sample.png)
