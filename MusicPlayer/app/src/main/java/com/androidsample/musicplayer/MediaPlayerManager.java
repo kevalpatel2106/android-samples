@@ -37,8 +37,8 @@ public class MediaPlayerManager {
         isPlaying = true;
     }
 
-    public static void startPlaying(){
-        if (mMediaPlayer == null || mCurrentMusicUri == null){
+    public static void startPlaying() {
+        if (mMediaPlayer == null || mCurrentMusicUri == null) {
             throw new RuntimeException("Start player.");
         }
 
@@ -47,7 +47,7 @@ public class MediaPlayerManager {
         isPlaying = true;
     }
 
-    public static boolean isInitialized(){
+    public static boolean isInitialized() {
         return mMediaPlayer != null;
     }
 
@@ -73,5 +73,22 @@ public class MediaPlayerManager {
 
     public static boolean isPlaying() {
         return isInitialized() && isPlaying;
+    }
+
+    public static int getTotalDuration() {
+        return isInitialized() ? mMediaPlayer.getDuration() : 0;
+    }
+
+    public static int getCurrentTime() {
+        return isInitialized() ? mMediaPlayer.getCurrentPosition() : 0;
+    }
+
+    public static void seekTo(int seekTo) {
+        if (isInitialized()) {
+            if (mMediaPlayer.getDuration() < seekTo)
+                throw new RuntimeException("Seek to duration cannot exceed to audio file duration.");
+            mPauseDuration = seekTo;
+            mMediaPlayer.seekTo(seekTo);
+        }
     }
 }

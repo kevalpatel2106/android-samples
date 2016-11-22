@@ -11,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int REQ_CODE_PICK_FILE = 123;
@@ -22,6 +25,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView mPlayPauseIv;
     private TextView mTitleTv;
+    private SeekBar mSeekBar;
+
+    private Timer mTimer;
+    private TimerTask mTimerTask = new TimerTask() {
+        @Override
+        public void run() {
+            if (mSeekBar != null) mSeekBar.setProgress(MediaPlayerManager.getCurrentTime());
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +41,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mTitleTv = (TextView) findViewById(R.id.track_name_tv);
+
+        mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                MediaPlayerManager.seekTo(seekBar.getProgress());
+            }
+        });
 
         mPlayPauseIv = (ImageView) findViewById(R.id.play_pause_iv);
         mPlayPauseIv.setOnClickListener(this);
@@ -44,10 +74,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     selectMusic();
                 } else if (MediaPlayerManager.isPlaying()) {    //If currently playing?? Pause.
                     MediaPlayerManager.pauseMusic();
+
+                    //stop the seek bar
+                    if (mTimer != null) mTimer.cancel();
+
                     setPlayPauseImage();
                 } else {        //Currently in pause state. Play from where it was pause.
                     MediaPlayerManager.startPlaying();
                     setPlayPauseImage();
+
+                    //stop the seek bar
+                    mSeekBar.setMax(MediaPlayerManager.getTotalDuration());
+                    mSeekBar.setProgress(MediaPlayerManager.getCurrentTime());
+                    mTimer = new Timer();
+                    mTimer.scheduleAtFixedRate(mTimerTask, 0, 1000);
                 }
                 break;
             case R.id.btn_select_music:
@@ -102,6 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     //set the title
                     mTitleTv.setText(new File(data.getData().getPath()).getName());
+
+                    //set the max value of the seek bar
+                    mSeekBar.setMax(MediaPlayerManager.getTotalDuration());
+                    mSeekBar.setProgress(0);
+                    mTimer = new Timer();
+                    mTimer.scheduleAtFixedRate(mTimerTask, 0, 1000);
 
                     //change the button icon
                     setPlayPauseImage();

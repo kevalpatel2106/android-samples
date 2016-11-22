@@ -17,20 +17,27 @@
         android:layout_height="wrap_content"
         android:text="Select music to play"/>
 
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/track_name_tv"
+        android:layout_marginTop="10dp"/>
+
     <ImageView
+        android:id="@+id/play_pause_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_below="@id/track_name_tv"
+        android:layout_below="@id/seek_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:id="@+id/play_pause_iv"
         android:src="@drawable/ic_play"
         tools:ignore="ContentDescription"/>
 
     <Button
+        android:id="@+id/btn_select_music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_select_music"
         android:layout_alignParentBottom="true"
         android:text="Select music to play"/>
 </RelativeLayout>
