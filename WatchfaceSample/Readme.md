@@ -15,6 +15,9 @@ This sample helps you to create the watch face that supports ambient mode, squar
 - Handle layout changes when watch enters in ambient mode.
 - Draw canvas on `onDraw()`.
 
+###Sample app:
+- Here is the [link](https://mega.nz/#!CFYDwZKS!rI-TQexb_wPVl5micqDZgRDRQqGHF1_bXZGnYi5NCw8) of sample apk file.
+
 |      Interactive mode    |  Ambient Mode |
 |--------------------------|--------------:|
 |![Interactive](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_1.png)|![Ambient](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_2.png)|
