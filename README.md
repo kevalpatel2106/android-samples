@@ -13,6 +13,7 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Facebook Chat Heads**](https://github.com/kevalpatel2106/android-samples/tree/master/Facebook%20Chat%20Heads): Create chat heads like facebook messanger.
 - [**Music player**](https://github.com/kevalpatel2106/android-samples/tree/master/MusicPlayer): Demostartes how to create music player application.
 - [**Floating widget**](https://github.com/kevalpatel2106/android-samples/tree/master/Foating%20Widget): Demostartes create a view/widget that floats over any application.
+- [**Listview countdown timer**](https://github.com/kevalpatel2106/android-samples/tree/master/Listview%20Countdown%20Timer): Listview which displays countdown timer on each row.
 
 ##Contribution:
 If you have any sample app that might be useful to other android developers, you are welcome to contribute by creating [new pull request](https://github.com/kevalpatel2106/android-samples/pulls). Before creating the pull request, you must read [contribuion guide lines](https://github.com/kevalpatel2106/android-samples/blob/master/CONTRIBUTING.md).
