@@ -11,4 +11,4 @@ In this sample project demonstrates how we can create simple chat heads and allo
 - Add `android.permission.SYSTEM_ALERT_WINDOW` permission to the `AndroidManifest.xml` and check if the permission available in runtime before starting chat head service.
 
 ##Screenshot:
-![sample](https://github.com/kevalpatel2106/android-samples/blob/master/Facebook%20Chat%20Heads/assets/sample.gif)
+![sample](https://github.com/kevalpatel2106/android-samples/blob/master/Foating%20Widget/assets/sample.gif)
