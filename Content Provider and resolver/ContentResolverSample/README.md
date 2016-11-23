@@ -9,5 +9,5 @@
 - To get the demo of the application, you have to install [Content Provider Sample](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolver/ContentProviderSample) application first.
 - Here is the [link](https://mega.nz/#!iAQS2CTZ!XWR8s1S_nL5PQdqZndvQFshd-mUiOPAzlG0H7GjaUJE) of the sample apk.
 
-####Screen shot:
-![Screenshot](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolver/ContentResolverSample/assets/sample.png)
+####Screenshot:
+![Screenshot](https://github.com/kevalpatel2106/android-samples/blob/master/Content%20Provider%20and%20resolver/ContentResolverSample/assets/sample.png)
