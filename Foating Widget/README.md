@@ -10,5 +10,8 @@ In this sample project demonstrates how we can create simple floating views and 
 - Override the `OnTouch()`, to respond the drag and move event.
 - Add `android.permission.SYSTEM_ALERT_WINDOW` permission to the `AndroidManifest.xml` and check if the permission available in runtime before starting floating widget service.
 
+##Sample apk:
+- Here is the [link](https://mega.nz/#!KUIW3TaA!Zk9XDgCSdiWsdZTmn-lfXGU8dHEZy1zfrB-_Z7bW-3s) of the sample apk file.
+
 ##Screenshot:
 ![sample](https://github.com/kevalpatel2106/android-samples/blob/master/Foating%20Widget/assets/sample.gif)

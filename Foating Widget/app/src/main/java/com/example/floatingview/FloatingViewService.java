@@ -48,6 +48,35 @@ public class FloatingViewService extends Service {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(mFloatingView, params);
 
+        //The root element of the collapsed view layout
+        final View collapsedView = mFloatingView.findViewById(R.id.collapse_view);
+        //The root element of the expanded view layout
+        final View expandedView = mFloatingView.findViewById(R.id.expanded_container);
+
+
+        //When user clicks on the image view of the collapsed layout,
+        //visibility of the collapsed layout will be changed to "View.GONE"
+        //and expanded view will become visible.
+        final ImageView collapsedImageView = (ImageView) mFloatingView.findViewById(R.id.collapsed_iv);
+        collapsedImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                collapsedView.setVisibility(View.GONE);
+                expandedView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //Set the close button
+        ImageView closeButtonCollapsed = (ImageView) mFloatingView.findViewById(R.id.close_btn);
+        closeButtonCollapsed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //close the service and remove the from from the window
+                stopSelf();
+            }
+        });
+
+        //Set the view while floating view is expanded.
         //Set the play button.
         ImageView playButton = (ImageView) mFloatingView.findViewById(R.id.play_btn);
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -80,14 +109,28 @@ public class FloatingViewService extends Service {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //close the service and remove the from from the window
+                collapsedView.setVisibility(View.VISIBLE);
+                expandedView.setVisibility(View.GONE);
+            }
+        });
+
+        //Open the application on thi button click
+        ImageView openButton = (ImageView) mFloatingView.findViewById(R.id.open_button);
+        openButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open the application  click.
+                Intent intent = new Intent(FloatingViewService.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+                //close the service and remove view from the view hierarchy
                 stopSelf();
             }
         });
 
         //Drag and move floating view using user's touch action.
         mFloatingView.findViewById(R.id.root_container).setOnTouchListener(new View.OnTouchListener() {
-            private int lastAction;
             private int initialX;
             private int initialY;
             private float initialTouchX;
@@ -105,23 +148,6 @@ public class FloatingViewService extends Service {
                         //get the touch location
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
-
-                        lastAction = event.getAction();
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        //As we implemented on touch listener with ACTION_MOVE,
-                        //we have to check if the previous action was ACTION_DOWN
-                        //to identify if the user clicked the view or not.
-                        if (lastAction == MotionEvent.ACTION_DOWN) {
-                            //Open the application  click.
-                            Intent intent = new Intent(FloatingViewService.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-
-                            //close the service and remove view from the view hierarchy
-                            stopSelf();
-                        }
-                        lastAction = event.getAction();
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         //Calculate the X and Y coordinates of the view.
@@ -130,7 +156,6 @@ public class FloatingViewService extends Service {
 
                         //Update the layout with new X & Y coordinate
                         mWindowManager.updateViewLayout(mFloatingView, params);
-                        lastAction = event.getAction();
                         return true;
                 }
                 return false;
