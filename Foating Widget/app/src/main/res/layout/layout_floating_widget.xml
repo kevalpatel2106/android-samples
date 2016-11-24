@@ -15,7 +15,7 @@
         <!--View while view is collapsed-->
         <RelativeLayout
             android:id="@+id/collapse_view"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:visibility="visible"
             android:layout_height="wrap_content"
             android:orientation="vertical">

@@ -3,6 +3,7 @@ package com.example.floatingview;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.opengl.Visibility;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -53,18 +54,6 @@ public class FloatingViewService extends Service {
         //The root element of the expanded view layout
         final View expandedView = mFloatingView.findViewById(R.id.expanded_container);
 
-
-        //When user clicks on the image view of the collapsed layout,
-        //visibility of the collapsed layout will be changed to "View.GONE"
-        //and expanded view will become visible.
-        final ImageView collapsedImageView = (ImageView) mFloatingView.findViewById(R.id.collapsed_iv);
-        collapsedImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                collapsedView.setVisibility(View.GONE);
-                expandedView.setVisibility(View.VISIBLE);
-            }
-        });
 
         //Set the close button
         ImageView closeButtonCollapsed = (ImageView) mFloatingView.findViewById(R.id.close_btn);
@@ -149,6 +138,22 @@ public class FloatingViewService extends Service {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
                         return true;
+                    case MotionEvent.ACTION_UP:
+                        int Xdiff = (int) (event.getRawX() - initialTouchX);
+                        int Ydiff = (int) (event.getRawY() - initialTouchY);
+
+                        //The check for Xdiff <10 && YDiff< 10 because sometime elements moves a little while clicking.
+                        //So that is click event.
+                        if (Xdiff < 10 && Ydiff < 10) {
+                            if (isViewCollapsed()) {
+                                //When user clicks on the image view of the collapsed layout,
+                                //visibility of the collapsed layout will be changed to "View.GONE"
+                                //and expanded view will become visible.
+                                collapsedView.setVisibility(View.GONE);
+                                expandedView.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        return true;
                     case MotionEvent.ACTION_MOVE:
                         //Calculate the X and Y coordinates of the view.
                         params.x = initialX + (int) (event.getRawX() - initialTouchX);
@@ -161,6 +166,15 @@ public class FloatingViewService extends Service {
                 return false;
             }
         });
+    }
+
+    /**
+     * Detect if the floating view is collapsed or expanded.
+     *
+     * @return true if the floating view is collapsed.
+     */
+    private boolean isViewCollapsed() {
+        return mFloatingView == null || mFloatingView.findViewById(R.id.collapse_view).getVisibility() == View.VISIBLE;
     }
 
     @Override
