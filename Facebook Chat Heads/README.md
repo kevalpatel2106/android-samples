@@ -4,6 +4,8 @@ We all love the chat heads from the popular Facebook Messenger. This provides ve
 
 In this sample project demonstrates how we can create simple chat heads and allow user to drag them across the screen. So that user can adjust the position of the chat head.
 
+####Here is the tutorial on [medium](https://medium.com/@kevalpatel2106/create-chat-heads-like-facebook-messenger-32f7f1a62064#.v4bm57tj1).
+
 ##Summary steps:
 - Create chat head layout.
 - Create service for chat heads and add the chat head layout to the display window.
