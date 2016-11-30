@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AndroidFakeCallApplication</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="thirtysecs">10 secs</string>
+    <string name="onemin">30 secs</string>
+    <string name="fivemins">1 min</string>
+    <string name="make_call">Call</string>
+    <string name="fake_name">Enter name</string>
+    <string name="fake_number">Enter phone number</string>
+    <string name="title_activity_fake_ringing">FakeRingingActivity</string>
+    <string name="incomingcall">Incoming Call</string>
+    <string name="fakecallname">Genny Nnaji</string>
+    <string name="fakecallnumber">080371558000</string>
+
+</resources>
