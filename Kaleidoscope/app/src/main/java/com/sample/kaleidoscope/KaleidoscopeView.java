@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 
 public class KaleidoscopeView extends View {
     private ArrayList<Box> mBoxes;
-    private Context mContext;
 
     private Paint mLinePaint;
 
@@ -35,12 +33,11 @@ public class KaleidoscopeView extends View {
     private float mSingleSlotWidth;
     private float mSingleSlotHeight;
 
-    private Path mDrawPath;
     private Paint mDrawPaint;
 
     public KaleidoscopeView(Context context, int rows, int columns) {
         super(context);
-        init(context, rows, columns);
+        init(rows, columns);
     }
 
     public KaleidoscopeView(Context context, AttributeSet attrs) {
@@ -56,27 +53,25 @@ public class KaleidoscopeView extends View {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    private void init(Context context, int rows, int columns) {
-        mContext = context;
+    private void init(int rows, int columns) {
         mNoOfRows = rows;
         mNoOfColumns = columns;
 
         mBoxes = new ArrayList<>();
+        setPaint();
 
+        invalidate();
+    }
+
+    private void setPaint() {
+        //set point for the separator line
         mLinePaint = new Paint();
         mLinePaint.setAntiAlias(true);
         mLinePaint.setStrokeWidth(10);
         mLinePaint.setStyle(Paint.Style.STROKE);
         mLinePaint.setColor(Color.parseColor("#000000"));
 
-        setupPath();
-
-        invalidate();
-    }
-
-    private void setupPath() {
-
-        //set paint
+        //set paint for the path
         mDrawPaint = new Paint();
         mDrawPaint.setColor(Color.parseColor("#FF0000"));
         mDrawPaint.setAntiAlias(true);
