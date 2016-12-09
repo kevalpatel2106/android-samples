@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -107,7 +108,10 @@ public class KaleidoscopeView extends View {
             canvas.drawLine(0, mSingleSlotHeight * j, mViewWidth, mSingleSlotHeight * j, mLinePaint);
 
         //draw the path drawn by user
-        for (Box box : mBoxes) canvas.drawPath(box.path, mDrawPaint);
+        for (Box box : mBoxes) {
+            canvas.drawPath(box.path, mDrawPaint);
+            if (box.path2 != null) canvas.drawPath(box.path2, mDrawPaint);
+        }
     }
 
     private void setBoxes(float viewWidth, float viewHeight) {
@@ -136,8 +140,6 @@ public class KaleidoscopeView extends View {
         //detect user touch
         float touchX = event.getX();
         float touchY = event.getY();
-        float pathX;
-        float pathY;
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -148,14 +150,42 @@ public class KaleidoscopeView extends View {
 
                 for (Box box : mBoxes) {
                     //erase old path
-                    box.path.reset();
+                    box.reset();
+
                     //draw the start point
                     box.path.moveTo(touchX + mSingleSlotWidth * (box.i - mSelectedCol), touchY + (mSingleSlotHeight * (box.j - mSelectedRow)));
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                for (Box box : mBoxes)
-                    box.path.lineTo(touchX + mSingleSlotWidth * (box.i - mSelectedCol), touchY + (mSingleSlotHeight * (box.j - mSelectedRow)));
+                float pathX;
+                float pathY;
+
+                for (Box box : mBoxes) {
+                    pathX = touchX + mSingleSlotWidth * (box.i - mSelectedCol);
+                    pathY = touchY + (mSingleSlotHeight * (box.j - mSelectedRow));
+
+                    box.path.lineTo(pathX, pathY);
+
+                    boolean isOutOfScreen = false;
+                    if (pathX > mViewWidth) {
+                        pathX = pathX - mViewWidth;
+                        isOutOfScreen = true;
+                    }
+                    if (pathY > mViewHeight) {
+                        pathY = pathY - mViewHeight;
+                        isOutOfScreen = true;
+                    }
+
+                    if (isOutOfScreen) {
+                        if (box.path2 == null) {
+                            box.path2 = new Path();
+                            box.path2.moveTo(pathX, pathY);
+                        } else {
+                            box.path2.lineTo(pathX, pathY);
+                        }
+                    }
+                    Log.d("path", pathX + " " + pathY);
+                }
                 break;
             default:
                 return false;
@@ -183,5 +213,11 @@ public class KaleidoscopeView extends View {
         private int j;
 
         private Path path;
+        private Path path2;
+
+        private void reset() {
+            path2 = null;
+            path.reset();
+        }
     }
 }
