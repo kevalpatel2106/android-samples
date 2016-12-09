@@ -13,6 +13,10 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Facebook Chat Heads**](https://github.com/kevalpatel2106/android-samples/tree/master/Facebook%20Chat%20Heads): Create chat heads like facebook messanger.
 - [**Music player**](https://github.com/kevalpatel2106/android-samples/tree/master/MusicPlayer): Demostartes how to create music player application.
 - [**Listview countdown timer**](https://github.com/kevalpatel2106/android-samples/tree/master/Listview%20Countdown%20Timer): Listview which displays countdown timer on each row.
+- [**Calender Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/CalenderReadDemo): Smaple project to demostrate how to read calander events and its details from the calender provider.
+- [**Contacs Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/ContactsRead): Smaple project to demostrate how to read contacts details from the contact provider.
+- [**Fake call**](https://github.com/kevalpatel2106/android-samples/tree/master/FakeCall): Application to ring fake call after specific amount of time.
+- [**Google Awarness API Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Google-Awareness-Demo): This project demostates, how to use Google Awarness APIs and how to use Frnce and Snapshot API.
 
 ##Contribution:
 If you have any sample app that might be useful to other android developers, you are welcome to contribute by creating [new pull request](https://github.com/kevalpatel2106/android-samples/pulls). Before creating the pull request, you must read [contribuion guide lines](https://github.com/kevalpatel2106/android-samples/blob/master/CONTRIBUTING.md).
