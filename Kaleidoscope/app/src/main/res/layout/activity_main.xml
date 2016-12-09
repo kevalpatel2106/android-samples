@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.sample.kaleidoscope.MainActivity">
+
+    <com.sample.kaleidoscope.KaleidoscopeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:boxColor="#000000"
+        app:noColumns="2"
+        app:noRows="2"
+        app:pathColor="#FF0000"/>
 </LinearLayout>
