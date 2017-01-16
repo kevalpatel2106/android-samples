@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:boxColor="#000000"
-        app:noColumns="2"
-        app:noRows="2"
+        app:noColumns="4"
+        app:noRows="4"
         app:pathColor="#FF0000"/>
 </LinearLayout>

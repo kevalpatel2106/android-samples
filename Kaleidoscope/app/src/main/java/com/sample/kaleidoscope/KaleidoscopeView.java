@@ -111,6 +111,7 @@ public class KaleidoscopeView extends View {
         for (Box box : mBoxes) {
             canvas.drawPath(box.path, mDrawPaint);
             if (box.path2 != null) canvas.drawPath(box.path2, mDrawPaint);
+            if (box.path3 != null) canvas.drawPath(box.path3, mDrawPaint);
         }
     }
 
@@ -166,25 +167,31 @@ public class KaleidoscopeView extends View {
 
                     box.path.lineTo(pathX, pathY);
 
-                    boolean isOutOfScreen = false;
-                    if (pathX > mViewWidth) {
-                        pathX = pathX - mViewWidth;
-                        isOutOfScreen = true;
-                    }
-                    if (pathY > mViewHeight) {
-                        pathY = pathY - mViewHeight;
-                        isOutOfScreen = true;
-                    }
+                    if (box.i != 0 || box.j != 0) {
 
-                    if (isOutOfScreen) {
-                        if (box.path2 == null) {
-                            box.path2 = new Path();
-                            box.path2.moveTo(pathX, pathY);
-                        } else {
-                            box.path2.lineTo(pathX, pathY);
+                        if (pathX > mViewWidth) {
+                            pathX = pathX - mViewWidth;
+
+                            if (box.path2 == null) {
+                                box.path2 = new Path();
+                                box.path2.moveTo(pathX, pathY);
+                            } else {
+                                box.path2.lineTo(pathX, pathY);
+                            }
                         }
+
+                        if (pathY > mViewHeight) {
+                            pathY = pathY - mViewHeight;
+
+                            if (box.path3 == null) {
+                                box.path3 = new Path();
+                                box.path3.moveTo(pathX, pathY);
+                            } else {
+                                box.path3.lineTo(pathX, pathY);
+                            }
+                        }
+                        Log.d("path", pathX + " " + pathY);
                     }
-                    Log.d("path", pathX + " " + pathY);
                 }
                 break;
             default:
@@ -214,9 +221,11 @@ public class KaleidoscopeView extends View {
 
         private Path path;
         private Path path2;
+        private Path path3;
 
         private void reset() {
             path2 = null;
+            path3 = null;
             path.reset();
         }
     }
