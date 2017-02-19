@@ -20,8 +20,8 @@ This sample helps you to create the watch face that supports ambient mode, squar
 
 |      Interactive mode    |  Ambient Mode |
 |--------------------------|--------------:|
-|![Interactive](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_1.png)|![Ambient](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_2.png)|
+|![Interactive](https://github.com/kevalpatel2106/android-samples/blob/master/Watchface/assets/screen_1.png)|![Ambient](https://github.com/kevalpatel2106/android-samples/blob/master/Watchface/assets/screen_2.png)|
 
 |Confiuger from Android Wear App    |Change Background from Phone|
 |-----------------------------------|---------------------------:|
-|![Android War](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_3.png)|![Phone](https://github.com/kevalpatel2106/android-samples/blob/master/WatchfaceSample/assets/screen_4.png)|
+|![Android War](https://github.com/kevalpatel2106/android-samples/blob/master/Watchface/assets/screen_3.png)|![Phone](https://github.com/kevalpatel2106/android-samples/blob/master/Watchface/assets/screen_4.png)|
