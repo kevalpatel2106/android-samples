@@ -1,2 +1,3 @@
-# README #
-Mirrored at: https://github.com/kevalpatel2106/File-Upload
+# Upload File Demo #
+
+This project uses HttpUrlConnectio to upload the file using multipoart form data request.
