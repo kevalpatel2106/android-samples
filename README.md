@@ -12,8 +12,8 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Android Quick Settings Tile**](https://github.com/kevalpatel2106/android-samples/tree/master/Android-N-Quick-Settings): This sample implements Quick Settings Tiles introduced in Android 7.0.
 - [**Animated Vector Drawables**](https://github.com/kevalpatel2106/android-samples/tree/master/Animated%20Vector%20Drawables): This sample demonstrates how to animate vector drawables using path morophing.
 - [**Music player**](https://github.com/kevalpatel2106/android-samples/tree/master/MusicPlayer): Demostartes how to create music player application.
-- [**Calender Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/CalenderReadDemo): Smaple project to demostrate how to read calander events and its details from the calender provider.
-- [**Contacs Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/ContactsRead): Smaple project to demostrate how to read contacts details from the contact provider.
+- [**Calender Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Calender%20Read%20Demo): Smaple project to demostrate how to read calander events and its details from the calender provider.
+- [**Contacs Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Contacts%20Read): Smaple project to demostrate how to read contacts details from the contact provider.
 - [**Fake call**](https://github.com/kevalpatel2106/android-samples/tree/master/FakeCall): Application to ring fake call after specific amount of time.
 - [**Google Awarness API Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Google-Awareness-Demo): This project demostates, how to use Google Awarness APIs and how to use Frnce and Snapshot API.
 - [**Upload File Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Upload%20File%20Demo): This project demostates you, how you can upload file in a multopart request using HttpUrlConnection.
