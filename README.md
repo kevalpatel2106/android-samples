@@ -1,4 +1,4 @@
-[![Twitter](https://img.shields.io/badge/Twitter-@Kevalonly77-blue.svg?style=flat)](https://twitter.com/Kevalonly77)
+[![Twitter](https://img.shields.io/badge/Twitter-@kevalpatel2106-blue.svg?style=flat)](https://twitter.com/kevalpatel2106)
 
 # android-samples
 
@@ -37,7 +37,8 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Infinite Level Expandable ListView**](https://github.com/kevalpatel2106/android-samples/tree/master/Infinite%20Level%20Expandable%20ListView): Implementation of the expandable listview that can display items at n number of levels.
 - [**Kaleidoscope**](https://github.com/kevalpatel2106/android-samples/tree/master/Kaleidoscope): Implementation of the Kalidoscope.😃
 
-##Contribution:
+## Contribution:
 If you have any sample app that might be useful to other android developers, you are welcome to contribute by creating [new pull request](https://github.com/kevalpatel2106/android-samples/pulls). Before creating the pull request, you must read [contribuion guide lines](https://github.com/kevalpatel2106/android-samples/blob/master/CONTRIBUTING.md).
 
-###If you have any queries ask me on [@Kevalonly77](https://twitter.com/Kevalonly77). Follow me on Twitter at [@Kevalonly77](https://twitter.com/Kevalonly77) to get more updates. 
+### Questions?
+Hit me on twitter [![Twitter](https://img.shields.io/badge/Twitter-@kevalpatel2106-blue.svg?style=flat)](https://twitter.com/kevalpatel2106)
