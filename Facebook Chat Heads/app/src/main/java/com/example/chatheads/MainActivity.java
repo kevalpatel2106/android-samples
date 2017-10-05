@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CODE_DRAW_OVER_OTHER_APP_PERMISSION) {
 
             //Check if the permission is granted or not.
-            if (resultCode == RESULT_OK) {
+            // Settings activity never returns proper value so instead check with following method
+            if (Settings.canDrawOverlays(this)) {
                 initializeView();
             } else { //Permission is not available
                 Toast.makeText(this,
