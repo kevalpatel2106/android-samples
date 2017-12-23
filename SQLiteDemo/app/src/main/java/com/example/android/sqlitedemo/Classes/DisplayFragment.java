@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +31,8 @@ public class DisplayFragment extends Fragment {
 
         View v=inflater.inflate(R.layout.display_fragment,container,false);
         dataList=getArguments().getParcelableArrayList("data");
-        Log.e("Datalist:" , dataList.toString());
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+
+        mRecyclerView =  v.findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

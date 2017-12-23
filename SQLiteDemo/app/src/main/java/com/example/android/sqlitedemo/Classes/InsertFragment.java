@@ -30,7 +30,7 @@ public class InsertFragment extends Fragment {
     EditText edittext_name,percentage;
     CalendarView cal_doj;
     DataBase database;
-    Date date_sql;
+    String data_date;
 
     @Nullable
     @Override
@@ -39,13 +39,15 @@ public class InsertFragment extends Fragment {
         FloatingActionButton fab = v.findViewById(R.id.fab);
         edittext_name=v.findViewById(R.id.edittext_name);
         percentage=v.findViewById(R.id.percentage);
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //data_date = sdf.format(new Date(cal_doj.getDate()));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Data d=new Data();
                 d.setName(edittext_name.getText().toString());
                 d.setPercentage(Float.parseFloat(percentage.getText().toString()));
-                d.setDoj(String.valueOf(cal_doj.getDate()));
+                d.setDoj(data_date);
                 database.addData(d);
                 Snackbar.make(view, "Data added succesfully in database", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -61,6 +63,8 @@ public class InsertFragment extends Fragment {
         database=new DataBase(this.getContext());
         final SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
         cal_doj=(CalendarView)getActivity().findViewById(R.id.calview_doj);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        data_date = sdf.format(new Date(cal_doj.getDate()));
         cal_doj.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int date) {
@@ -77,10 +81,8 @@ public class InsertFragment extends Fragment {
                     Log.e("date error==",e.toString());
                 }
                 Date datesql = new Date(dateutil.getTime());
-//                d = datesql;
-//                datedatam=d.toString();
-//                Log.e("datedatam by cal=",datedatam);
-                Toast.makeText(getContext(), date + "/" + month + "/" + year + "\n" + datesql.toString(), Toast.LENGTH_SHORT).show();
+                data_date=date + "/" + month + "/" + year;
+                Toast.makeText(getContext(), date + "/" + month + "/" + year , Toast.LENGTH_SHORT).show();
             }
 
         });

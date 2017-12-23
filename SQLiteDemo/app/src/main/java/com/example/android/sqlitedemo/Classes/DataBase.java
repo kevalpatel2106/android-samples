@@ -10,8 +10,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.os.Build.VERSION_CODES.O;
-
 /**
  * Created by Shiv Kumar Aggarwal on 25-11-2017.
  */
@@ -50,7 +48,6 @@ public class DataBase extends SQLiteOpenHelper{
 
         void addData(Data d)
         {
-            Log.e("addINdatabasemorning","called");
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(KEY_NAME,d.getName());
@@ -73,19 +70,14 @@ public class DataBase extends SQLiteOpenHelper{
             String selectQuery = "SELECT  * FROM " + TABLE_NAME;
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
-            Log.e("in readData","start");
             // looping through all rows and adding to list
             if (cursor.moveToFirst()) {
                 do {
                     Data d = new Data();
                     d.setName(cursor.getString(0));
                     d.setDoj(cursor.getString(1));
-                    //Log.e("d.date=",d.date);
-                    // Adding contact to list
                     d.setPercentage(Integer.parseInt(cursor.getString(2)));
                     dataList.add(d);
-                    //Log.e("d.level",String.valueOf(d.level));
-                    Log.e("in getAllcont",dataList.toString());
                 } while (cursor.moveToNext());
             }
             return dataList;
