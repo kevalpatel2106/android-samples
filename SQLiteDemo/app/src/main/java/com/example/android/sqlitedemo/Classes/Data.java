@@ -3,10 +3,8 @@ package com.example.android.sqlitedemo.Classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.os.UserHandle.readFromParcel;
-
 /**
- * Created by Shiv Kumar Aggarwal on 25-11-2017.
+ * Created by Nishita Aggarwal on 25-11-2017.
  */
 
 

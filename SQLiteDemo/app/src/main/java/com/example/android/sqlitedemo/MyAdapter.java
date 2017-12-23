@@ -10,11 +10,10 @@ import android.widget.TextView;
 
 import com.example.android.sqlitedemo.Classes.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Shiv Kumar Aggarwal on 25-11-2017.
+ * Created by Nishita Aggarwal on 25-11-2017.
  */
 
 
@@ -40,7 +39,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CardHolder> {
         holder.datedisp.setText(card.getDoj());
         holder.perdisp.setText((String.valueOf(card.getPercentage())));
     }
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return cardArrayList.size();

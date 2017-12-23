@@ -15,7 +15,7 @@ import com.example.android.sqlitedemo.R;
 import java.util.List;
 
 /**
- * Created by Shiv Kumar Aggarwal on 25-11-2017.
+ * Created by Nishita Aggarwal on 25-11-2017.
  */
 
 public class DisplayFragment extends Fragment {
@@ -51,7 +51,6 @@ public class DisplayFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //getActivity().setTitle("Blood Sugar");
     }
 }
 
