@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_insertdata) {
             fragment=new InsertFragment();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_viewdata) {
             fragment=new DisplayFragment();
             ArrayList<Data> output=(ArrayList)database.readData();
             Bundle bundle=new Bundle();

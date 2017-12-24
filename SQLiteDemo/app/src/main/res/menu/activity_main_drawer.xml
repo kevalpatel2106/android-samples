@@ -3,10 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_insertdata"
             android:title="Insert Data" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_viewdata"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="View Data" />
 

@@ -33,7 +33,7 @@ public class DataBase extends SQLiteOpenHelper{
             String CREATE_SUGARMORNING_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                     + KEY_NAME + " TEXT, "
                     + KEY_DATE + " TEXT, "
-                    + KEY_PERCENTAGE + " NUMBER" + ")";
+                    + KEY_PERCENTAGE + " REAL" + ")";
             database.execSQL(CREATE_SUGARMORNING_TABLE);
         }
 
@@ -51,8 +51,7 @@ public class DataBase extends SQLiteOpenHelper{
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(KEY_NAME,d.getName());
-            values.put(KEY_DATE, d.getDoj()); // Contact Name
-            //values.put(KEY_DATE,d1.toString());
+            values.put(KEY_DATE, d.getDoj());
             values.put(KEY_PERCENTAGE,d.getPercentage());
             try {
                 db.insert(TABLE_NAME, null, values);
@@ -76,7 +75,7 @@ public class DataBase extends SQLiteOpenHelper{
                     Data d = new Data();
                     d.setName(cursor.getString(0));
                     d.setDoj(cursor.getString(1));
-                    d.setPercentage(Integer.parseInt(cursor.getString(2)));
+                    d.setPercentage(Float.parseFloat(cursor.getString(2)));
                     dataList.add(d);
                 } while (cursor.moveToNext());
             }

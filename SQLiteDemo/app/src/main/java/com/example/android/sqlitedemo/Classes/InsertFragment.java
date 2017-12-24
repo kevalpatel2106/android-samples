@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,8 +23,6 @@ import java.text.SimpleDateFormat;
  */
 
 public class InsertFragment extends Fragment {
-
-    Button button_submit;
     EditText edittext_name,percentage;
     CalendarView cal_doj;
     DataBase database;
@@ -39,8 +35,6 @@ public class InsertFragment extends Fragment {
         FloatingActionButton fab = v.findViewById(R.id.fab);
         edittext_name=v.findViewById(R.id.edittext_name);
         percentage=v.findViewById(R.id.percentage);
-        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        //data_date = sdf.format(new Date(cal_doj.getDate()));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,26 +55,16 @@ public class InsertFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         database=new DataBase(this.getContext());
-        final SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-        cal_doj=(CalendarView)getActivity().findViewById(R.id.calview_doj);
+        cal_doj=getActivity().findViewById(R.id.calview_doj);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         data_date = sdf.format(new Date(cal_doj.getDate()));
         cal_doj.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int date) {
-
-                java.util.Date dateutil = new java.util.Date();
                 if(month==12)
                     month=1;
                 else
                     month=month+1;
-                String startDate = date + "-" + month + "-" + year;
-                try {
-                    dateutil = sdf1.parse(startDate);
-                } catch (Exception e) {
-                    Log.e("date error==",e.toString());
-                }
-                Date datesql = new Date(dateutil.getTime());
                 data_date=date + "/" + month + "/" + year;
                 Toast.makeText(getContext(), date + "/" + month + "/" + year , Toast.LENGTH_SHORT).show();
             }
