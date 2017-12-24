@@ -4,10 +4,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_insertdata"
-            android:title="Insert Data" />
+            android:title="Insert Data"
+            android:icon="@drawable/ic_menu_send"/>
         <item
             android:id="@+id/nav_viewdata"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="View Data" />
 
     </group>
