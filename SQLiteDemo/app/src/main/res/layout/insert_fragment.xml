@@ -14,16 +14,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NAME" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/edittext_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Enter your Name" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="NAME" />
+
+                <EditText
+
+                    android:id="@+id/edittext_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your Name" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,18 +44,23 @@
 
             </CalendarView>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Percentage" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Enter your percentage"
-                android:text="0" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Percentage" />
 
+                <EditText
+                    android:id="@+id/percentage"
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your percentage"
+                    android:text="0" />
+            </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
