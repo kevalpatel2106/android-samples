@@ -19,7 +19,8 @@ This repository contains android tutorial projects that contain code of the samp
 - [**Upload File Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Upload%20File%20Demo): This project demostates you, how you can upload file in a multopart request using HttpUrlConnection.
 - [**Widget Sample**](https://github.com/kevalpatel2106/android-samples/tree/master/WidgetSample): This demo implements simple widget to count the number of clicks.
 - [**Estimote Beacon Distance Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Estimote-Beacon-DistanceDemo): Detect the distance from you estimote beacon using altbeacon library.
-- [**Content Provider & Resolver**](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolvero): Demostrates how you can implement your custom content provider and content detector.
+- [**Content Provider & Resolver**](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolvero): Demostrates how you can implement your custom content provider and content detector.  
+- [**SQLite Demo**](https://github.com/NISHITA97/android-samples/tree/dev/SQLiteDemo): Smaple project to demostrate how to use SQLite database in your app.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
