@@ -1,0 +1,15 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintAppLinksAutoVerifyError" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintPermissionImpliesUnsupportedChromeOsHardware" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnsupportedChromeOsHardware" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="DuplicatePropertyInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="CURRENT_FILE" value="true" />
+      <option name="MODULE_WITH_DEPENDENCIES" value="false" />
+      <option name="CHECK_DUPLICATE_VALUES" value="true" />
+      <option name="CHECK_DUPLICATE_KEYS" value="true" />
+      <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true" />
+    </inspection_tool>
+  </profile>
+</component>
