@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "494657388959",
+    "firebase_url": "https://uber-sachin-82ddf.firebaseio.com",
+    "project_id": "uber-sachin-82ddf",
+    "storage_bucket": "uber-sachin-82ddf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494657388959:android:faf577dff0bc8c574a7daa",
+        "android_client_info": {
+          "package_name": "com.example.ubersachin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494657388959-ebcoaioos5fo33ho1c70t3t8o6h56h3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ubersachin",
+            "certificate_hash": "6db7111d5bdaad7b0d931c94169d9c4103b264e7"
+          }
+        },
+        {
+          "client_id": "494657388959-7p3irkdsnsdms0jo25e7nfhtlquqtccd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi0bUEQDUtK_ewpzzKYp5bSFb1pKbSDjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494657388959-7p3irkdsnsdms0jo25e7nfhtlquqtccd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
