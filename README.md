@@ -11,16 +11,16 @@ This repository contains android tutorial projects that contain code of the samp
 ### Android Demo:
 - [**Android Quick Settings Tile**](https://github.com/kevalpatel2106/android-samples/tree/master/Android-N-Quick-Settings): This sample implements Quick Settings Tiles introduced in Android 7.0.
 - [**Animated Vector Drawables**](https://github.com/kevalpatel2106/android-samples/tree/master/Animated%20Vector%20Drawables): This sample demonstrates how to animate vector drawables using path morophing.
-- [**Music player**](https://github.com/kevalpatel2106/android-samples/tree/master/MusicPlayer): Demostartes how to create music player application.
-- [**Calender Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Calender%20Read%20Demo): Smaple project to demostrate how to read calander events and its details from the calender provider.
-- [**Contacs Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Contacts%20Read): Smaple project to demostrate how to read contacts details from the contact provider.
+- [**Music player**](https://github.com/kevalpatel2106/android-samples/tree/master/MusicPlayer): Demonstrates how to create music player application.
+- [**Calender Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Calender%20Read%20Demo): Sample project to demonstrate how to read calender events and its details from the calender provider.
+- [**Contacs Read Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Contacts%20Read): Sample project to demonstrate how to read contacts details from the contact provider.
 - [**Fake call**](https://github.com/kevalpatel2106/android-samples/tree/master/FakeCall): Application to ring fake call after specific amount of time.
 - [**Google Awarness API Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Google-Awareness-Demo): This project demostates, how to use Google Awarness APIs and how to use Frnce and Snapshot API.
-- [**Upload File Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Upload%20File%20Demo): This project demostates you, how you can upload file in a multopart request using HttpUrlConnection.
+- [**Upload File Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Upload%20File%20Demo): This project demonstrates you, how you can upload file in a multopart request using HttpUrlConnection.
 - [**Widget Sample**](https://github.com/kevalpatel2106/android-samples/tree/master/WidgetSample): This demo implements simple widget to count the number of clicks.
 - [**Estimote Beacon Distance Demo**](https://github.com/kevalpatel2106/android-samples/tree/master/Estimote-Beacon-DistanceDemo): Detect the distance from you estimote beacon using altbeacon library.
-- [**Content Provider & Resolver**](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolvero): Demostrates how you can implement your custom content provider and content detector.  
-- [**SQLite Demo**](https://github.com/NISHITA97/android-samples/tree/dev/SQLiteDemo): Smaple project to demostrate how to use SQLite database in your app.
+- [**Content Provider & Resolver**](https://github.com/kevalpatel2106/android-samples/tree/master/Content%20Provider%20and%20resolvero): Demonstrates how you can implement your custom content provider and content detector.  
+- [**SQLite Demo**](https://github.com/NISHITA97/android-samples/tree/dev/SQLiteDemo): Smaple project to demonstrate how to use SQLite database in your app.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
